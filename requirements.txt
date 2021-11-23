@@ -3,3 +3,4 @@ discord.py==1.7.3
 pycoingecko
 beautifulsoup4
 requests
+pytz
