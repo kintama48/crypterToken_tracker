@@ -76,10 +76,10 @@ async def on_message_delete(message):
 
 @tasks.loop(seconds=300)
 async def send_stats():
-    response = requests.get('https://bscscan.com/token/0xDa6802BbEC06Ab447A68294A63DE47eD4506ACAA#balances',
-                            headers=header)
-    soup = BeautifulSoup(response.content, 'html.parser')
-    holders = (soup.find(class_='mr-3').get_text()).split(' ')[0].strip()
+#     response = requests.get('https://bscscan.com/token/0xDa6802BbEC06Ab447A68294A63DE47eD4506ACAA#balances',
+#                             headers=header)
+#     soup = BeautifulSoup(response.content, 'html.parser')
+#     holders = (soup.find(class_='mr-3').get_text()).split(' ')[0].strip()
     channel = get(bot.get_all_channels(), id=config['stats_channel'])
     stats = coin_api.get_coin_by_id(config['coin_id'])['market_data']
     embed = discord.Embed(color=0xcafcbe, description="**🔥All Stats🔥**")
@@ -90,7 +90,7 @@ async def send_stats():
     embed.add_field(name="🧱 Supply", value=f"{stats['total_supply']} tokens")
     embed.add_field(name="📈️ 24HR Percent Change", value=f"{round(stats['price_change_percentage_24h'], 2)}%",
                     inline=False)
-    embed.add_field(name="💰 Holders", value=f'{holders} addresses')
+#     embed.add_field(name="💰 Holders", value=f'{holders} addresses')
     tz = timezone('EST')
     current_time = datetime.datetime.now(tz=tz)
     embed.timestamp = current_time
